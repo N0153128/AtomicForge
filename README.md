@@ -24,10 +24,13 @@ and keep my coding skills in shape.
 >TODO LIST:
 
 -[ ] To find an operation which will be used in Coin generation
+ 
 -[ ] To build a GUI client for miner
+ 
 -[ ] To write a Wallet that would keep and manage Coins
+ 
 -[ ] To enable integration features
 
 >PROGRESS JOURNAL
 
-I managed to create README.md with proper markup :D
+I managed to create the README.md with a proper markup :D
