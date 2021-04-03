@@ -23,7 +23,7 @@ and keep my coding skills in shape.
 
 >TODO LIST:
 
--[ ] To find an operation which will be used in Coin generation
+-[x] To find an operation which will be used in Coin generation
  
 -[ ] To build a GUI client for miner
  

@@ -1,14 +1,16 @@
 from math import sqrt
 from random import randint
 import datetime
+from peewee import *
 
 
+# This class describes Coin's property and mining process
 class Coin:
 
     def __init__(self):
         self.unit = 0
 
-    # TODO
+    # This thing here is just for fun
     @staticmethod
     def linear_search(arr, query):
         print(f'Search query: {query}')
@@ -21,13 +23,11 @@ class Coin:
                 pass
             cou += 1
 
-# decided to go with jump search + random integer
-    # TODO
+    # decided to go with jump search + random array length, varying from 10 to 50 million elements
     @staticmethod
     def jump_search(arr, query):
         print(f'Search query: {query}')
         div = int(sqrt(len(arr)))
-        print(f'step = {div}, floor: {div//2}')
         i = 0
         found = False
         while not found:
@@ -39,8 +39,13 @@ class Coin:
                     if j == query:
                         print(f'found {j}')
                         found = True
+                if not found:
+                    print('Couln\'t Find')
+                    break
             i += div
+        return found
 
+    # this is how i'm generating arrays
     @staticmethod
     def array_generator(num):
         arr = []
@@ -48,9 +53,22 @@ class Coin:
             arr.append(i)
         return arr
 
+    def seek_loop(self):
+        coin = 0
+        while True:
+            if self.jump_search(self.array_generator(5000), randint(10, 500000)):
+                coin += 1
+                print(f'Total amount of coins: {coin}')
+
+    def seek_rate(self):
+        # To be Done
+
 # THIS IS MY PLAYGROUND, DO NOT TOUCH please
-# Coin.jump_search(Coin.array_generator(10000000), 9999999)
-# print(f'Output data: {Coin.bubble(array)}')
+
+
+coin = Coin()
+coin.seek_loop()
+
 # print('Jump search: ')
 # start = datetime.datetime.now()
 # print(f'Started at: {start}')
