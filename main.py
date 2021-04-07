@@ -1,12 +1,12 @@
-from math import sqrt
+from math import sqrt, ceil, floor
 from random import randint
 import datetime
 from peewee import *
 import time
 
 
-# This class describes Coin's property and mining process
-class Coin:
+# This class describes Atom's property and mining process
+class Atom:
 
     def __init__(self):
         self.unit = 0
@@ -55,27 +55,32 @@ class Coin:
         return arr
 
     def seek_loop(self):
-        coin = 0
+        atom = 0
         while True:
             if self.jump_search(self.array_generator(5000), randint(10, 500000)):
-                coin += 1
-                print(f'Total amount of coins: {coin}')
+                atom += 1
+                print(f'Total amount of atoms: {atom}')
 
     def seek_rate(self):
-        coin = 0
+        atom = 0
         timeout = time.time()+60
+        result = None
         while True:
             if self.jump_search(self.array_generator(5000), randint(10, 500000)):
-                coin += 1
+                atom += 1
             if time.time() >= timeout:
                 break
-        print(f'{coin} Per Minute on average')
+        if atom > 1000:
+            result = round(atom, -3)
+        elif atom < 1000:
+            result = round(atom, -2)
+        print(f'Avg. {result}/pM')
 
 # THIS IS MY PLAYGROUND, DO NOT TOUCH please
 
 
-coin = Coin()
-coin.seek_rate()
+atom = Atom()
+atom.seek_rate()
 
 # print('Jump search: ')
 # start = datetime.datetime.now()
