@@ -2,6 +2,7 @@ from math import sqrt
 from random import randint
 import datetime
 from peewee import *
+import time
 
 
 # This class describes Coin's property and mining process
@@ -26,21 +27,21 @@ class Coin:
     # decided to go with jump search + random array length, varying from 10 to 50 million elements
     @staticmethod
     def jump_search(arr, query):
-        print(f'Search query: {query}')
+        # print(f'Search query: {query}')
         div = int(sqrt(len(arr)))
         i = 0
         found = False
         while not found:
             if i == query:
-                print('found')
+                # print('found')
                 found = True
             elif i > query:
                 for j in arr[i-div:i]:
                     if j == query:
-                        print(f'found {j}')
+                        # print(f'found {j}')
                         found = True
                 if not found:
-                    print('Couln\'t Find')
+                    # print('Couln\'t Find')
                     break
             i += div
         return found
@@ -61,13 +62,20 @@ class Coin:
                 print(f'Total amount of coins: {coin}')
 
     def seek_rate(self):
-        # To be Done
+        coin = 0
+        timeout = time.time()+60
+        while True:
+            if self.jump_search(self.array_generator(5000), randint(10, 500000)):
+                coin += 1
+            if time.time() >= timeout:
+                break
+        print(f'{coin} Per Minute on average')
 
 # THIS IS MY PLAYGROUND, DO NOT TOUCH please
 
 
 coin = Coin()
-coin.seek_loop()
+coin.seek_rate()
 
 # print('Jump search: ')
 # start = datetime.datetime.now()
